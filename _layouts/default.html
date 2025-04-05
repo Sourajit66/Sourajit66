@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="{{ page.lang | default: site.lang | default: 'en' }}">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{{ site.title }}</title>
+    <link rel="stylesheet" href="{{ "/assets/css/style.css" | relative_url }}">
+    <link rel="stylesheet" href="{{ "/assets/css/custom.css" | relative_url }}">
+  </head>
+  <body>
+    <nav>
+      <a href="/">Home</a> |
+      <a href="/team.html">Team</a> |
+      <a href="/publications.html">Publications</a> |
+      <a href="/research.html">Research</a> |
+      <a href="/positions.html">Open Positions</a>
+    </nav>
+    {{ content }}
+  </body>
+</html>
