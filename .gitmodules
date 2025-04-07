@@ -1,0 +1,5 @@
+[submodule "geochem-lab-website"]
+  path = geochem-lab-website
+  url = https://github.com/Sourajit66/geochem-lab-website.git
+  branch = main  # <-- Add this line
+
