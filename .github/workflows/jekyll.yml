@@ -3,20 +3,21 @@ name: Build and Deploy Jekyll Site
 on:
   push:
     branches:
-      - main  # or 'master' if that's your default branch
+      - main  # Adjust if your default branch is different
 
 jobs:
   github-pages:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout Repository
+        uses: actions/checkout@v4
 
       - name: Setup Ruby
         uses: ruby/setup-ruby@v1
         with:
           ruby-version: '3.1'
 
-      - name: Install Dependencies
+      - name: Install Bundler & Gems
         run: |
           gem install bundler
           bundle install
@@ -25,9 +26,8 @@ jobs:
         run: bundle exec jekyll build
 
       - name: Deploy to GitHub Pages
-  uses: peaceiris/actions-gh-pages@v3
-  with:
-    github_token: ${{ secrets.GITHUB_TOKEN }}
-    publish_dir: ./_site
-    publish_branch: gh-pages
-    keep_files: false
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_branch: gh-pages
+          publish_dir: ./_site
