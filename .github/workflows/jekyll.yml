@@ -23,6 +23,15 @@ jobs:
           ruby-version: '3.1'
           bundler-cache: true  # Automatic caching (no need for separate cache step)
           cache-version: 1     # Increment if you need to bust cache
+- name: Cache gems
+  uses: actions/cache@v3
+  with:
+    path: |
+      vendor/bundle
+      ~/.local/share/gem
+    key: ${{ runner.os }}-ruby-${{ hashFiles('**/Gemfile.lock') }}
+    restore-keys: |
+      ${{ runner.os }}-ruby-
 
       - name: Build with Jekyll
         run: bundle exec jekyll build
