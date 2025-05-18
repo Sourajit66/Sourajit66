@@ -2,37 +2,33 @@ name: Build and Deploy Jekyll Site
 
 on:
   push:
-    branches:
-      - main  # or 'master' if your repo uses it
+    branches: [ main ]
+
+concurrency:
+  group: pages-build-deploy
+  cancel-in-progress: true
 
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
     permissions:
-      contents: write  # Required for peaceiris/actions-gh-pages to deploy
+      contents: write
+    
     steps:
-      - name: Checkout Repository
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
       - name: Set up Ruby
         uses: ruby/setup-ruby@v1
         with:
-          ruby-version: '3.1'  # Matches GitHub Pages' Ruby version
-          bundler-cache: true  # Caches gems for faster runs
+          ruby-version: '3.1'
+          bundler-cache: true  # Automatic caching (no need for separate cache step)
+          cache-version: 1     # Increment if you need to bust cache
 
-      - name: Install Bundler & Dependencies
-        run: |
-          gem install bundler
-          bundle config path vendor/bundle  # Isolates gems
-          bundle install
-
-      - name: Build Jekyll Site
-        run: bundle exec jekyll build --trace  # --trace helps debug failures
+      - name: Build with Jekyll
+        run: bundle exec jekyll build
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./_site
-          publish_branch: gh-pages  # Optional if using 'gh-pages', default for this action
-          # full_commit_message: "Deploy: ${{ github.event.head_commit.message }}"  # Optional commit message
