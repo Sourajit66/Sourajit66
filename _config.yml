@@ -27,7 +27,7 @@ description: >-
   integrate field work, geochemical analysis, and numerical modeling to study 
   the co-evolution of microbial life and its environment.
 
-baseurl: ""  # Leave empty for user GitHub Pages (username.github.io)
+baseurl: "Sourajit66"  # Leave empty for user GitHub Pages (username.github.io)
 url: "https://Sourajit66.github.io"  # Replace with your actual GitHub username
 
 github_username: Sourajit66
@@ -60,4 +60,4 @@ twitter:
   username: frisson
 
 github:
-  username: coloured_basalt
+  username: Sourajit66
