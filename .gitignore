@@ -3,3 +3,8 @@ _site
 .jekyll-cache
 .jekyll-metadata
 vendor
+.Rapp.history
+.DS_Store
+_site/
+.jekyll-cache/
+.sass-cache/
